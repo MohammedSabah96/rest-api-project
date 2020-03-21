@@ -1,6 +1,8 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, viewsets
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.settings import api_settings
 from . import serializers
 
 
@@ -74,3 +76,6 @@ class HelloViewSets(viewsets.ViewSet):
     def destroy(self, request, pk=None):
         """Deleting an object by it's ID"""
         return Response({'http_method': 'DELETE'})
+
+class LoginUser(ObtainAuthToken):
+    renderer_classes = api_settings.DEFAULT_RENDERER_CLASSES
